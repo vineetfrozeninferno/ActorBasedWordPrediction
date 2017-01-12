@@ -1,0 +1,4 @@
+GET         /addSentence                                controller.BaseApplication.addSentence(sentence: String)
+GET         /addDocument                                controller.BaseApplication.addDocument(document: String)
+GET         /getTopNextWord                             controller.BaseApplication.getTopNextWord(sentenceFrag: String)
+GET         /getTopSentence                             controller.BaseApplication.getTopSentence(sentenceFrag: String)
