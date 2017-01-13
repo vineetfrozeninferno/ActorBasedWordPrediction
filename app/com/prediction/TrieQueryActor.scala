@@ -37,7 +37,7 @@ class TrieQueryActor extends Actor {
           val updatedTokenSetOption = possibleTokens.trie.keySet.toList.sorted.headOption
           if(updatedTokenSetOption.isEmpty) originalSender ! sentenceTokens
           else {
-            val updatedSentence = (updatedTokenSetOption.get.token :: sentenceTokens.tokens).mkString(" ")
+            val updatedSentence = (updatedTokenSetOption.get.token :: sentenceTokens.tokens.reverse).reverse.mkString(" ")
             self.tell(QueryRemainingSentenceRequest(updatedSentence), originalSender)
           }
         }
