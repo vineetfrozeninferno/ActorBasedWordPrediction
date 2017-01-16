@@ -7,6 +7,7 @@ import akka.routing.{ConsistentHashingPool, SmallestMailboxPool}
 import akka.util.Timeout
 import com.prediction.TopologyDefinitionActor._
 import controller.BaseApplication
+import play.api.libs.json.Json
 import play.libs.Akka
 
 import scala.collection.JavaConversions._
@@ -61,6 +62,7 @@ class TopologyDefinitionActor extends Actor {
     case addSentenceRequest: AddSentenceRequest => sentenceTokenizerActorRef ! addSentenceRequest
     case sentenceTokens: SentenceTokens => updateTrieActorRef ! sentenceTokens
     case weightedTrie: WeightedTrie =>
+      //Json.toJson(weightedTrie)
       println(s"trie = $weightedTrie")
   }
 }
