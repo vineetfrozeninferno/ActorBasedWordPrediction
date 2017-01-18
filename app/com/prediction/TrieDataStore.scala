@@ -1,6 +1,5 @@
 package com.prediction
 
-//import scala.collection.mutable
 import anorm._
 import play.api.db.DB
 import play.api.libs.json.Json
@@ -41,13 +40,6 @@ object TrieDataStore {
         false
     }
   }
-
-  /*private val simulatedDataStore:mutable.HashMap[String, WeightedTrie] = new mutable.HashMap[String, WeightedTrie]()
-
-  def getTrieFromDataStore(key: String): WeightedTrie = simulatedDataStore.getOrElse(key, WeightedTrie())
-
-  def addTrieToDataStore(key: String, trie: WeightedTrie): Unit = simulatedDataStore.put(key, trie)*/
-
 
   def addTrieToDataStore(key: String, trie: WeightedTrie): Unit = {
     DB.withConnection(implicit connection => {
