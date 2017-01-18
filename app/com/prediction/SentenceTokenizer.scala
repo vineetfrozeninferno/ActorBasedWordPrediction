@@ -9,6 +9,8 @@ class SentenceTokenizer extends Actor {
       val sentence = sentenceRequest.sentence
       val tokens = sentence.replaceAll("""\p{Punct}""", "")
                           .split(" ")
+                          .map(_.trim)
+                          .filter(_.nonEmpty)
                           .toList
       val tokensWithTermination = BaseApplication.SENTENCE_TERMINATION :: tokens.reverse
       sender ! SentenceTokens(tokensWithTermination.reverse)
@@ -17,6 +19,8 @@ class SentenceTokenizer extends Actor {
       val sentence = sentenceRequest.sentence
       val tokens = sentence.replaceAll("""\p{Punct}""", "")
         .split(" ")
+        .map(_.trim)
+        .filter(_.nonEmpty)
         .toList
       sender ! SentenceTokens(tokens)
 
@@ -24,6 +28,8 @@ class SentenceTokenizer extends Actor {
       val sentence = sentenceRequest.sentence
       val tokens = sentence.replaceAll("""\p{Punct}""", "")
         .split(" ")
+        .map(_.trim)
+        .filter(_.nonEmpty)
         .toList
       sender ! SentenceTokens(tokens)
   }

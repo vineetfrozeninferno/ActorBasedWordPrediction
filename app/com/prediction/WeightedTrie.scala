@@ -78,11 +78,11 @@ object WeightedTrie {
 
     entries.foreach(jsVal => {
       val key = (jsVal \ keyJsField).as[WeightedTrieNode]
-      val valueOptional = jsonReads(jsVal).asOpt
+      val valueOptional = jsonReads((jsVal \ valueJsField).get).asOpt
       valueOptional.map(value => reconstructedTrie.put(key, value))
     })
 
-    JsSuccess(WeightedTrie())
+    JsSuccess(WeightedTrie(reconstructedTrie))
   }
 
   implicit lazy val format = new Format[WeightedTrie] {
